@@ -4,13 +4,21 @@ const delay = document.getElementById("delay");
 const output = document.getElementById("output");
 const submitBtn = document.getElementById("btn");
 
-const handleSubmit = () => {
-	const textValue = text.value;
-	const delayValue = delay.value;
+const handleDelay = (delay) => {
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve();
+		}, delay)
+	})
+}
 
-	setTimeout(() => {
-		output.innerHTML = textValue;
-	}, delayValue)
+const handleSubmit = async () => {
+	const textValue = text.value;
+	const delayValue = parseInt(delay.value);
+
+	await handleDelay(delayValue);
+
+	output.innerHTML = textValue;
 }
 
 submitBtn.addEventListener("click", handleSubmit)
